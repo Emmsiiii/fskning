@@ -36,8 +36,8 @@ X = dataFrame.astype(object)
 y = dataFrame.astype(object)
 y.info()
 
-X = dataFrame[['Alder', 'Køn','CPM (pris pr. 1000 eksponeringer)']]
-y = dataFrame['Eksponeringer']
+X = dataFrame[['Alder', 'Køn','Eksponeringer']]
+y = dataFrame['CPM (pris pr. 1000 eksponeringer)']
 
 X = pd.get_dummies(X) 
 y = pd.get_dummies(y)
@@ -68,10 +68,6 @@ print("Prediction for test set: {}".format(y_pred))
 reg_model_diff = ({'Actual value': y_test, 'Predicted value': y_pred})
 reg_model_diff
 
-mae = metrics.mean_absolute_error(y_test, y_pred)
-mse = metrics.mean_squared_error(y_test, y_pred)
-r2 = np.sqrt(metrics.mean_squared_error(y_test, y_pred))
-
-print('Mean Absolute Error:', mae)
-print('Mean Square Error:', mse)
-print('Root Mean Square Error:', r2)
+mse = mean_squared_error(y_test,y_pred)
+print("The mean sqaured error is: {:.2f}".format(mse))
+print("The root mean squared error is: {:.2f}".format(np.sqrt(mse)))
