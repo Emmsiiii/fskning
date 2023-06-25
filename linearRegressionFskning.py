@@ -39,8 +39,6 @@ y.info()
 X = dataFrame[['Alder', 'Køn','Eksponeringer']]
 y = dataFrame['CPM (pris pr. 1000 eksponeringer)']
 
-X = pd.get_dummies(X) 
-y = pd.get_dummies(y)
 
 dataFrame.describe()
 
