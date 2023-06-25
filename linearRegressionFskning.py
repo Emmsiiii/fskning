@@ -20,7 +20,7 @@ from sklearn.model_selection import train_test_split, cross_val_score
 !rm -r machine-learning/  # first remove folder, if present
 !git clone https://github.com/Emmsiiii/fskning
 
-dataFrame = pd.read_csv("fskning/Data cleaned.csv", delimiter=";")
+dataFrame = pd.read_csv("fskning/Data cleaned.csv", delimiter=";",decimal=',')
 
 dataFrame.head()
 
@@ -36,9 +36,8 @@ X = dataFrame.astype(object)
 y = dataFrame.astype(object)
 y.info()
 
-X = dataFrame[['Alder', 'Køn','Eksponeringer']]
+X = dataFrame[['Eksponeringer']]
 y = dataFrame['CPM (pris pr. 1000 eksponeringer)']
-
 
 dataFrame.describe()
 
@@ -46,6 +45,9 @@ sns.pairplot(dataFrame, x_vars=['CPM (pris pr. 1000 eksponeringer)','Køn','Alde
 plt.show()
 
 X_train,X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 100)
+
+X_train.fillna(0,inplace=True)
+y_train.fillna(0,inplace=True)
 
 y_train.shape
 y_test.shape
@@ -65,6 +67,9 @@ print("Prediction for test set: {}".format(y_pred))
 
 reg_model_diff = ({'Actual value': y_test, 'Predicted value': y_pred})
 reg_model_diff
+
+y_test.fillna(0,inplace=True)
+y_pred.fillna(0,inplace=True)
 
 mse = mean_squared_error(y_test,y_pred)
 print("The mean sqaured error is: {:.2f}".format(mse))
