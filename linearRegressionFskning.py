@@ -32,10 +32,6 @@ dataFrame.describe()
 
 dataFrame.info()
 
-X = dataFrame.astype(object)
-y = dataFrame.astype(object)
-y.info()
-
 X = dataFrame[['Eksponeringer']]
 y = dataFrame['CPM (pris pr. 1000 eksponeringer)']
 
